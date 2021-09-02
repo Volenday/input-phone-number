@@ -69,7 +69,14 @@ export default class InputPhoneNumber extends Component {
 	}
 
 	render() {
-		const { extra = null, inlineError = true, label = '', required = false, withLabel = false } = this.props;
+		const {
+			extra = null,
+			error = null,
+			inlineError = true,
+			label = '',
+			required = false,
+			withLabel = false
+		} = this.props;
 
 		let formItemCommonProps = {
 			colon: false,
