@@ -8,8 +8,7 @@ const browser = typeof window !== 'undefined' ? true : false;
 if (browser) require('./styles.css');
 
 export default class InputPhoneNumber extends Component {
-	state = { code: 'PH', localValue: '' };
-
+	
 	getPhoneNumber = (value, code) => {
 		const mobile = phone(value, code);
 		return mobile.length ? mobile[0] : value;
@@ -18,7 +17,6 @@ export default class InputPhoneNumber extends Component {
 	renderInput() {
 		const { Input } = require('antd');
 
-		const { code } = this.state;
 		const {
 			disabled = false,
 			id,
@@ -29,18 +27,20 @@ export default class InputPhoneNumber extends Component {
 			placeholder = '',
 			required = false,
 			styles = {},
-			value = ''
+			value = '',
+			code = ''
 		} = this.props;
 
 		return (
 			<div class="row">
 				<div class="col-md-2 col-sm-2 col-2">
 					<CountryDropdown
+						name='code'
 						classes="form-control"
 						disabled={disabled}
-						onChange={e => this.setState({ code: e })}
+						onChange={e => onChange({ target: { name: 'code', value: e } }, 'code', e)}
 						required={required}
-						value={code}
+						value={code ? code : ''}
 						valueType="short"
 					/>
 				</div>
